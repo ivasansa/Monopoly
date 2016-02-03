@@ -9,9 +9,8 @@ package Model;
  *
  * @author ivan
  */
-public class Jugador {
+public class Calle extends Casilla{
     String nombre = "";
-    int posicion = 0;
-    int dinero = 0;
-    //propiedad
+    
+    
 }

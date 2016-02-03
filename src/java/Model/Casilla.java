@@ -5,13 +5,20 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ivan
  */
-public class Jugador {
-    String nombre = "";
-    int posicion = 0;
-    int dinero = 0;
-    //propiedad
+public class Casilla {
+    protected String nombre = "";
+    
+    public static String[] mostraJugadors(){
+        String[] J = {};
+        
+        
+        
+        return J;
+    }
 }
