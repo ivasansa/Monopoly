@@ -41,15 +41,78 @@ public class Main extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Main</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Main at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<html>\n" +
+"    <head>\n" +
+"        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+"        <title>JSP Page</title>\n" +
+"    </head>\n" +
+"    <body>\n" +
+"        <h1>Monopoly</h1>\n" +
+"        <table border=\"1\">\n" +
+"  <tr>\n" +
+"      <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td colspan=\"9\" rowspan=\"9\"></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"  <tr>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"    <td><h2>"+ System.out.println("Hola") +"</h2><p>Jugadores: Jug1</p><p>Precio</p></td>\n" +
+"  </tr>\n" +
+"</table>");
         }
     }
 
