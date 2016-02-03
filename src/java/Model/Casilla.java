@@ -14,11 +14,21 @@ import java.util.ArrayList;
 public class Casilla {
     protected String nombre = "";
     
-    public static String[] mostraJugadors(){
+    /*public static String[] mostraJugadors(){
         String[] J = {};
         
         
         
         return J;
+    }*/
+
+    public Casilla(String nombre) {
+        this.nombre = nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    
 }
