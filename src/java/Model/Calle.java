@@ -17,9 +17,10 @@ public class Calle extends Casilla {
         super(nombre);
     }
 
-    public Calle(String nombre, int valor) {
+    public Calle(String nombre, int valor, String color) {
         super(nombre);
         this.valor=valor;
+        this.color = color;
     }
     
     

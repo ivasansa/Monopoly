@@ -5,11 +5,13 @@
  */
 package Controller;
 
+import Model.Calle;
 import Model.Casilla;
 import Model.Jugador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,13 +47,26 @@ public class Main extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
             
+            ArrayList <Calle> listaCalles = new ArrayList <>();
+            
+            listaCalles.add( new Calle("Rambla", 54, "Azul") );
+            listaCalles.add( new Calle("Diagonal", 4, "Rojo") );
+            listaCalles.add( new Calle("Gran Via", 64, "Rojo") );
+            
+             request.setAttribute("listaCalles", listaCalles);
+            
+            Iterator <Calle> mi_iterador = listaCalles.iterator();
+//
+//            while(mi_iterador.hasNext()){
+//                System.out.println(mi_iterador.next().);
+//            }
             
             Jugador Jugador1 = new Jugador();
-            
             Jugador1.setDinero(1000);
-            
             request.setAttribute("Jugador1", Jugador1);
             RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
+            
+            
             rd.forward(request, response);
         }
     }
