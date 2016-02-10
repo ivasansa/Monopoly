@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Casilla {
     protected String nombre = "";
-    
     /*public static String[] mostraJugadors(){
         String[] J = {};
         

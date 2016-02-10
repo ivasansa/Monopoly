@@ -5,13 +5,45 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ivan
  */
-public class Jugador {
-    String nombre = "";
-    int posicion = 0;
+public class Jugador implements Serializable {
+    String nombre = "Pepe";
+    int posicion = 63;
     int dinero = 0;
     //propiedad
+
+    public Jugador() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
+    public int getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(int dinero) {
+        this.dinero = dinero;
+    }
+    
+    
+    
 }
