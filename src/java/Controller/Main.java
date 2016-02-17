@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Calle;
 import Model.Casilla;
+import Model.Dado;
 import Model.Jugador;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,13 +51,28 @@ public class Main extends HttpServlet {
             System.out.println("valordado: " + request.getParameter("tirarDados"));
             System.out.println("nom usuari " + request.getParameter("nombre"));
             
+            Jugador Jugador1 = new Jugador();
+            Jugador1.setDinero(1000);
+            request.setAttribute("Jugador1", Jugador1);
+            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
+            
+            Dado dado1 = new Dado();
+            dado1.tirar();
+            Dado dado2 = new Dado();
+            dado2.tirar();
+            
+            
+            if (request.getParameter("tirarDados") != null){
+                
+            }
+            
             ArrayList <Calle> listaCalles = new ArrayList <>();
             
             listaCalles.add( new Calle("Rambla", 54, "Azul") );
             listaCalles.add( new Calle("Diagonal", 4, "Rojo") );
             listaCalles.add( new Calle("Gran Via", 64, "Rojo") );
             
-             request.setAttribute("listaCalles", listaCalles);
+            request.setAttribute("listaCalles", listaCalles);
             
             Iterator <Calle> mi_iterador = listaCalles.iterator();
 //
@@ -64,10 +80,7 @@ public class Main extends HttpServlet {
 //                System.out.println(mi_iterador.next().);
 //            }
             
-            Jugador Jugador1 = new Jugador();
-            Jugador1.setDinero(1000);
-            request.setAttribute("Jugador1", Jugador1);
-            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
+            
             
             
             rd.forward(request, response);
