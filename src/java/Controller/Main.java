@@ -32,7 +32,7 @@ public class Main extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    
+    //http://localhost:8080/Monopoly/Main LLAMAR AL MAIN PRIMERO
     
     @Override
     public void init()
@@ -40,12 +40,15 @@ public class Main extends HttpServlet {
         ArrayList<Casilla> listaCasillas = new ArrayList<>();
         listaCasillas.add(new Casilla("Go"));
     }
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            System.out.println("valordado: " + request.getParameter("tirarDados"));
+            System.out.println("nom usuari " + request.getParameter("nombre"));
             
             ArrayList <Calle> listaCalles = new ArrayList <>();
             

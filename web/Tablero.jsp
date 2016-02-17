@@ -17,7 +17,16 @@
         <h1>${Jugador1.nombre}</h1>
         <h1>${Jugador2.nombre}</h1>
         <h1>${Jugador1.dinero}</h1>
-
+        
+        <form action="Main" method="GET">
+            <input type="submit" name="tirarDados" value="5"/>
+        </form>
+        
+        <form action="Main" method="GET">
+            <input type="text" name="nombre" value="escriu nom"/>
+        </form>
+        
+        
         <table border="1">
   <tr>
       <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>${Jugador1.dinero}€</p></th>
