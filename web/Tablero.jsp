@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "Controller.Main"%>
-<jsp:useBean id="Jugador1" class="Model.Jugador" scope="request"/>
+<jsp:useBean id="p" class="Model.Partida" scope="request"/>
 <!DOCTYPE html>
 <html>
     <head>

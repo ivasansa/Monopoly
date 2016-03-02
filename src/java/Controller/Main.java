@@ -5,14 +5,12 @@
  */
 package Controller;
 
-import Model.Calle;
 import Model.Casilla;
-import Model.Dado;
 import Model.Jugador;
+import Model.Partida;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,42 +46,51 @@ public class Main extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            System.out.println("valordado: " + request.getParameter("tirarDados"));
-            System.out.println("nom usuari " + request.getParameter("nombre"));
+            String jug1 = request.getParameter("jug1");
+            String jug2 = request.getParameter("jug2");
             
-            Jugador Jugador1 = new Jugador();
-            Jugador1.setDinero(1000);
-            request.setAttribute("Jugador1", Jugador1);
+            Partida  p = new Partida();
+            
+            p.afegirJugador( new Jugador(jug1, 3000, 0) );
+            p.afegirJugador( new Jugador(jug2, 3000, 0) );
+            
+//            System.out.println("valordado: " + request.getParameter("tirarDados"));
+//            System.out.println("nom usuari " + request.getParameter("nombre"));
+//            
+//            Jugador Jugador1 = new Jugador();
+//            Jugador1.setDinero(1000);
+            
+            request.setAttribute("p", p);
             RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
-            
-            Dado dado1 = new Dado();
-            dado1.tirar();
-            Dado dado2 = new Dado();
-            dado2.tirar();
-            
-            
-            if (request.getParameter("tirarDados") != null){
-                
-            }
-            
-            ArrayList <Calle> listaCalles = new ArrayList <>();
-            
-            listaCalles.add( new Calle("Rambla", 54, "Azul") );
-            listaCalles.add( new Calle("Diagonal", 4, "Rojo") );
-            listaCalles.add( new Calle("Gran Via", 64, "Rojo") );
-            
-            request.setAttribute("listaCalles", listaCalles);
-            
-            Iterator <Calle> mi_iterador = listaCalles.iterator();
-//
-//            while(mi_iterador.hasNext()){
-//                System.out.println(mi_iterador.next().);
-//            }
-            
-            
-            
-            
             rd.forward(request, response);
+//            
+//            Dado dado1 = new Dado();
+//            dado1.tirar();
+//            Dado dado2 = new Dado();
+//            dado2.tirar();
+//            
+//            
+//            if (request.getParameter("tirarDados") != null){
+//                
+//            }
+//            
+//            ArrayList <Calle> listaCalles = new ArrayList <>();
+//            
+//            listaCalles.add( new Calle("Rambla", 54, "Azul") );
+//            listaCalles.add( new Calle("Diagonal", 4, "Rojo") );
+//            listaCalles.add( new Calle("Gran Via", 64, "Rojo") );
+//            
+//            request.setAttribute("listaCalles", listaCalles);
+//            
+//            Iterator <Calle> mi_iterador = listaCalles.iterator();
+////
+////            while(mi_iterador.hasNext()){
+////                System.out.println(mi_iterador.next().);
+////            }
+            
+            
+            
+            
         }
     }
 

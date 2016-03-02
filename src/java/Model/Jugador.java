@@ -12,14 +12,19 @@ import java.io.Serializable;
  * @author ivan
  */
 public class Jugador implements Serializable {
-    String nombre = "Pepe";
+    String nombre = "anonimo";
     int posicion = 63;
     int dinero = 0;
-    //propiedad
 
     public Jugador() {
     }
 
+    public Jugador(String nombre, int dinero, int posicion) {
+        this.nombre = nombre;
+        this.posicion = posicion;
+        this.dinero = dinero;
+    }
+    
     public String getNombre() {
         return nombre;
     }
