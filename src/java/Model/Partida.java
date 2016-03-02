@@ -1,17 +1,22 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Partida {
+public class Partida implements Serializable {
     
-    public ArrayList <Jugador> llistaJugadores;
+    public ArrayList <Jugador> listaJugadores;
 
     public Partida() {
-        llistaJugadores = new ArrayList <>();
+        listaJugadores = new ArrayList <>();
     }
     
     public void afegirJugador(Jugador J) {
-        llistaJugadores.add(J);
+        listaJugadores.add(J);
+    }
+    
+    public Jugador getJugador(int index) {
+        return listaJugadores.get(index);
     }
     
 }

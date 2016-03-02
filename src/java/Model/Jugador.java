@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Jugador implements Serializable {
     String nombre = "anonimo";
-    int posicion = 63;
+    int posicion = 0;
     int dinero = 0;
 
     public Jugador() {

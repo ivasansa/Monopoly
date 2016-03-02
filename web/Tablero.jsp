@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "Controller.Main"%>
+
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:useBean id="p" class="Model.Partida" scope="request"/>
 <!DOCTYPE html>
 <html>
@@ -14,24 +18,33 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>${Jugador1.nombre}</h1>
-        <h1>${Jugador2.nombre}</h1>
+        <h1>${ p.getJugador(0).posicion }</h1>
+        <h1>${ p.getJugador(1).posicion }</h1>
         <h1>${Jugador1.dinero}</h1>
-        
-        <form action="Main" method="GET">
-            <input type="submit" name="tirarDados" value="5"/>
-        </form>
-        
-        <form action="Main" method="GET">
-            <input type="text" name="nombre" value="escriu nom"/>
-        </form>
-        
         
         <table border="1">
   <tr>
-      <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>${Jugador1.dinero}€</p></th>
-    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
-    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
+        
+    <th>
+        <h2>Nombre Casilla 1</h2>
+        <p>Jugadores: </p>
+        <c:if test="${ p.getJugador(0).posicion == 0 }">
+           <p>${ p.getJugador(0).nombre }</p>
+        </c:if>
+    </th>
+    <th>
+        <h2>Nombre Casilla 2</h2>
+        <p>Jugadores: </p>
+        <c:if test="${ p.getJugador(0).posicion == 1 }">
+           <p>${ p.getJugador(0).nombre }</p>
+        </c:if>
+    </th>
+
+    <form action="Main" method="GET">
+        <input type="submit" value="tirar" name="check"/>
+    </form>
+    
+ <!--    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
     <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
     <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
     <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>
@@ -89,7 +102,7 @@
     <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>
     <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>
     <td><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></td>
-    <td><h2></h2></td>
+    <td><h2></h2></td>-->
   </tr>
 </table>
     </body>

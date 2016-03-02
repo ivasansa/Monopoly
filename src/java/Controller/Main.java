@@ -35,24 +35,44 @@ public class Main extends HttpServlet {
     
     @Override
     public void init()
-            throws ServletException {
-        ArrayList<Casilla> listaCasillas = new ArrayList<>();
-        listaCasillas.add(new Casilla("Go"));
+        throws ServletException {
     }
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            String jug1 = request.getParameter("jug1");
-            String jug2 = request.getParameter("jug2");
             
             Partida  p = new Partida();
             
-            p.afegirJugador( new Jugador(jug1, 3000, 0) );
-            p.afegirJugador( new Jugador(jug2, 3000, 0) );
+            request.setAttribute("p", p);
+            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
+            
+            switch (request.getParameter("check")) {
+                case "formulario":
+                    System.out.println("check llamada");
+                    
+                    String jug1 = request.getParameter("jug1");
+                    String jug2 = request.getParameter("jug2");
+
+                    System.out.println(jug1);
+                    System.out.println(jug2);
+
+                    p.afegirJugador( new Jugador(jug1, 3000, 1) );
+                    p.afegirJugador( new Jugador(jug2, 3000, 0) );
+                    
+                    rd.forward(request, response);
+                    
+                    break;
+                case "tirar":
+                    System.out.println("tirar llamada");
+                    System.out.println(p.getJugador(0).getNombre());
+                    
+//                    rd.forward(request, response);
+                    break;
+            }
+            
+            
             
 //            System.out.println("valordado: " + request.getParameter("tirarDados"));
 //            System.out.println("nom usuari " + request.getParameter("nombre"));
@@ -60,9 +80,9 @@ public class Main extends HttpServlet {
 //            Jugador Jugador1 = new Jugador();
 //            Jugador1.setDinero(1000);
             
-            request.setAttribute("p", p);
-            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
-            rd.forward(request, response);
+//            request.setAttribute("p", p);
+//            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
+//            rd.forward(request, response);
 //            
 //            Dado dado1 = new Dado();
 //            dado1.tirar();
