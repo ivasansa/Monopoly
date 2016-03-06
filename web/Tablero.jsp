@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Tablero
-    Created on : 03-feb-2016, 18:55:35
-    Author     : ivan
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "Controller.Main"%>
 
@@ -42,6 +36,10 @@
 
     <form action="Main" method="GET">
         <input type="submit" value="tirar" name="check"/>
+    </form>
+    
+    <form action="Main" method="GET">
+        <input type="submit" value="finalizarTurno" name="check"/>
     </form>
     
  <!--    <th><h2>Nombre Casilla</h2><p>Jugadores: Jug1</p><p>Precio</p></th>

@@ -15,6 +15,15 @@ public class Jugador implements Serializable {
     String nombre = "anonimo";
     int posicion = 0;
     int dinero = 0;
+    boolean MiTurno = false;
+
+    public boolean isMiTurno() {
+        return MiTurno;
+    }
+
+    public void setMiTurno(boolean MiTurno) {
+        this.MiTurno = MiTurno;
+    }
 
     public Jugador() {
     }

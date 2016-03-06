@@ -5,18 +5,18 @@
  */
 package Controller;
 
-import Model.Casilla;
 import Model.Jugador;
 import Model.Partida;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Main", urlPatterns = {"/Main"})
 public class Main extends HttpServlet {
@@ -38,19 +38,27 @@ public class Main extends HttpServlet {
         throws ServletException {
     }
     
+    
+    
+        
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            Partida  p = new Partida();
+            HttpSession sessio = request.getSession();
+            Partida p= (Partida)sessio.getAttribute("p");
+            int size = p.listaJugadores.size();
+//            Partida  p;
+            RequestDispatcher rd;
             
-            request.setAttribute("p", p);
-            RequestDispatcher rd = request.getRequestDispatcher("/Tablero.jsp");
-            
-            switch (request.getParameter("check")) {
+                switch (request.getParameter("check")) {
                 case "formulario":
-                    System.out.println("check llamada");
+                    
+                    p = new Partida();
+                    
+                    System.out.println("partida creada");
                     
                     String jug1 = request.getParameter("jug1");
                     String jug2 = request.getParameter("jug2");
@@ -58,18 +66,66 @@ public class Main extends HttpServlet {
                     System.out.println(jug1);
                     System.out.println(jug2);
 
-                    p.afegirJugador( new Jugador(jug1, 3000, 1) );
+                    p.afegirJugador( new Jugador(jug1, 3000, 0) );
                     p.afegirJugador( new Jugador(jug2, 3000, 0) );
                     
+                    p.listaJugadores.get(0).setMiTurno(true);
+                    
+                    
+                    request.setAttribute("p", p);
+                    
+                    
+                    sessio.setAttribute("p", p);
+                    
+                    
+                    rd = request.getRequestDispatcher("/Tablero.jsp");
+                    rd.forward(request, response);
+                    
+                    
+                    
+                    break;
+                    
+                case "tirar":
+                    System.out.println("tirar llamada");
+                    
+//                    p = (Partida) request.getAttribute("p");
+                    
+                    p.tirar();
+                    
+                    int valorDados = p.getValor();
+                    for(int i=0; i < size; i++){
+                        if(p.listaJugadores.get(i).isMiTurno()){
+                            p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
+                        }
+                    }
+                    
+//                    p.getJugador(0).setPosicion(p.getJugador(0).getPosicion() + 1);
+                    
+                    request.setAttribute("p", p);
+                    
+                    rd = request.getRequestDispatcher("/Tablero.jsp");
+                    rd.forward(request, response);
+                    break;
+                    
+                case "finalizarTurno":
+                    for(int i=0; i < size; i++){
+                        if(p.listaJugadores.get(i).isMiTurno()){
+                            p.getJugador(i).setMiTurno(false);
+                            if(i == (size -1) ){
+                                p.getJugador(0).setMiTurno(true);
+                            }else{
+                                p.getJugador(i+1).setMiTurno(true);
+                            }
+                        }
+                    }
+                    
+                    request.setAttribute("p", p);
+                    
+                    rd = request.getRequestDispatcher("/Tablero.jsp");
                     rd.forward(request, response);
                     
                     break;
-                case "tirar":
-                    System.out.println("tirar llamada");
-                    System.out.println(p.getJugador(0).getNombre());
                     
-//                    rd.forward(request, response);
-                    break;
             }
             
             
@@ -126,7 +182,7 @@ public class Main extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+          processRequest(request, response);
     }
 
     /**
