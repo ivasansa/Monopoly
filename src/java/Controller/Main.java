@@ -46,11 +46,16 @@ public class Main extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            Partida  p = new Partida();
+            int size = 0;
             
             HttpSession sessio = request.getSession();
-            Partida p= (Partida)sessio.getAttribute("p");
-            int size = p.listaJugadores.size();
-//            Partida  p;
+            
+            if((Partida)sessio.getAttribute("p") != null){
+                p= (Partida)sessio.getAttribute("p");
+                size = p.listaJugadores.size();
+            }
+            
             RequestDispatcher rd;
             
                 switch (request.getParameter("check")) {
@@ -76,7 +81,7 @@ public class Main extends HttpServlet {
                     
                     
                     sessio.setAttribute("p", p);
-                    
+                    System.out.println("se");
                     
                     rd = request.getRequestDispatcher("/Tablero.jsp");
                     rd.forward(request, response);
@@ -93,34 +98,41 @@ public class Main extends HttpServlet {
                     p.tirar();
                     
                     int valorDados = p.getValor();
+                    
                     for(int i=0; i < size; i++){
-                        if(p.listaJugadores.get(i).isMiTurno()){
+                        if(p.listaJugadores.get(i).isMiTurno() && !p.getJugador(i).isHasTirado()){
+                            
                             p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
+                            p.getJugador(i).setHasTirado(true);
                         }
                     }
                     
 //                    p.getJugador(0).setPosicion(p.getJugador(0).getPosicion() + 1);
                     
                     request.setAttribute("p", p);
-                    
+                    sessio.setAttribute("p", p);
                     rd = request.getRequestDispatcher("/Tablero.jsp");
                     rd.forward(request, response);
                     break;
                     
                 case "finalizarTurno":
+                    int flag = 0;
                     for(int i=0; i < size; i++){
-                        if(p.listaJugadores.get(i).isMiTurno()){
-                            p.getJugador(i).setMiTurno(false);
-                            if(i == (size -1) ){
+                        if(p.listaJugadores.get(i).isMiTurno() && flag == 0){
+                            System.out.println(p.listaJugadores.get(i).getNombre() +" "+p.listaJugadores.get(i).isMiTurno());
+                            if(i == (size-1) ){
                                 p.getJugador(0).setMiTurno(true);
                             }else{
                                 p.getJugador(i+1).setMiTurno(true);
                             }
+                            p.getJugador(i).setMiTurno(false);
+                            p.getJugador(i).setHasTirado(false);
+                            flag = 1;
+                            System.out.println(p.listaJugadores.get(i).getNombre() +" "+p.listaJugadores.get(i).isMiTurno());
                         }
                     }
-                    
                     request.setAttribute("p", p);
-                    
+                    sessio.setAttribute("p", p);
                     rd = request.getRequestDispatcher("/Tablero.jsp");
                     rd.forward(request, response);
                     

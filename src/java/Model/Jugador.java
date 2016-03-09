@@ -16,6 +16,15 @@ public class Jugador implements Serializable {
     int posicion = 0;
     int dinero = 0;
     boolean MiTurno = false;
+    boolean hasTirado = false;
+
+    public boolean isHasTirado() {
+        return hasTirado;
+    }
+
+    public void setHasTirado(boolean hasTirado) {
+        this.hasTirado = hasTirado;
+    }
 
     public boolean isMiTurno() {
         return MiTurno;

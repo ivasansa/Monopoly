@@ -14,7 +14,7 @@
     <body>
         <h1>${ p.getJugador(0).posicion }</h1>
         <h1>${ p.getJugador(1).posicion }</h1>
-        <h1>${Jugador1.dinero}</h1>
+       
         
         <table border="1">
   <tr>
