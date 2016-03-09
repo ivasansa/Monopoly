@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Calle;
 import Model.Jugador;
 import Model.Partida;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
@@ -74,6 +75,31 @@ public class Main extends HttpServlet {
                     p.afegirJugador( new Jugador(jug1, 3000, 0) );
                     p.afegirJugador( new Jugador(jug2, 3000, 0) );
                     
+                    p.afegirCalle(new Calle("Go", 9999, "Go"));
+                    
+                    p.afegirCalle(new Calle("València", 30, "Marrón"));
+                    p.afegirCalle(new Calle("Murcia", 40, "Marrón"));
+                    p.afegirCalle(new Calle("Navas de Tolosa", 50, "Marrón"));
+                    
+                    p.afegirCalle(new Calle("Cole", 9999, "Cole"));
+                    
+                    p.afegirCalle(new Calle("Agricultura", 70, "Rojo"));
+                    p.afegirCalle(new Calle("Espronceda", 80, "Rojo"));
+                    p.afegirCalle(new Calle("Fluvià", 90, "Rojo"));
+                    
+                    p.afegirCalle(new Calle("Parquing", 9999, "Parquing"));
+                    
+                    p.afegirCalle(new Calle("Tánger", 120, "Amarillo"));
+                    p.afegirCalle(new Calle("Martí i Pujol", 130, "Amarillo"));
+                    p.afegirCalle(new Calle("Nelson Mandela", 140, "Amarillo"));
+                    
+                     p.afegirCalle(new Calle("Vaya al Cole", 9999, "VayaCole"));
+                    
+                    p.afegirCalle(new Calle("Presi Companys", 160, "Verde"));
+                    p.afegirCalle(new Calle("2 de Mayo", 170, "Verde"));
+                    p.afegirCalle(new Calle("Independència", 140, "Verde"));
+                    
+                    
                     p.listaJugadores.get(0).setMiTurno(true);
                     
                     
@@ -101,7 +127,9 @@ public class Main extends HttpServlet {
                     
                     for(int i=0; i < size; i++){
                         if(p.listaJugadores.get(i).isMiTurno() && !p.getJugador(i).isHasTirado()){
-                            
+                            if(p.getJugador(i).getPosicion() + valorDados >= 16){
+                                p.getJugador(i).setPosicion((p.getJugador(i).getPosicion() + valorDados) - 16);
+                            }
                             p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
                             p.getJugador(i).setHasTirado(true);
                         }

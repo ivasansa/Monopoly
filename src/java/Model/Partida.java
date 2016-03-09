@@ -9,9 +9,12 @@ public class Partida implements Serializable {
     private int valor=0;
     
     public ArrayList <Jugador> listaJugadores;
-
+    public ArrayList <Calle> listaCalles;
+    
+    
     public Partida() {
         listaJugadores = new ArrayList <>();
+        listaCalles = new ArrayList <>();
     }
     
     public void afegirJugador(Jugador J) {
@@ -22,6 +25,14 @@ public class Partida implements Serializable {
         return listaJugadores.get(index);
     }
 
+    public void afegirCalle(Calle c) {
+        listaCalles.add(c);
+    }
+    
+    public Calle getCalle(int index) {
+        return listaCalles.get(index);
+    }
+    
     public int getValor() {
         return valor;
     }
@@ -34,5 +45,23 @@ public class Partida implements Serializable {
         Random r = new Random();
         this.valor = r.nextInt(7-1) + 1;
     }
+
+    public ArrayList<Jugador> getListaJugadores() {
+        return listaJugadores;
+    }
+
+    public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+
+    public ArrayList<Calle> getListaCalles() {
+        return listaCalles;
+    }
+
+    public void setListaCalles(ArrayList<Calle> listaCalles) {
+        this.listaCalles = listaCalles;
+    }
+    
+    
     
 }
