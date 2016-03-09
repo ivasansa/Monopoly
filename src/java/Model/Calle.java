@@ -13,12 +13,12 @@ public class Calle extends Casilla {
     protected int valor=0; 
     protected String color="";
 
-    public Calle(String nombre) {
-        super(nombre);
+    public Calle(String nombre, String p) {
+        super(nombre, p);
     }
 
-    public Calle(String nombre, int valor, String color) {
-        super(nombre);
+    public Calle(String nombre, int valor, String color, String p) {
+        super(nombre, p);
         this.valor=valor;
         this.color = color;
     }

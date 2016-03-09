@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Casilla {
     protected String nombre = "";
+    protected String propietario = "";
     /*public static String[] mostraJugadors(){
         String[] J = {};
         
@@ -21,12 +22,17 @@ public class Casilla {
         return J;
     }*/
 
-    public Casilla(String nombre) {
+    public Casilla(String nombre, String p) {
         this.nombre = nombre;
+        this.propietario = p;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getPropietario() {
+        return propietario;
     }
     
     

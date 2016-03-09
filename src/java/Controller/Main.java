@@ -75,29 +75,29 @@ public class Main extends HttpServlet {
                     p.afegirJugador( new Jugador(jug1, 3000, 0) );
                     p.afegirJugador( new Jugador(jug2, 3000, 0) );
                     
-                    p.afegirCalle(new Calle("Go", 999999999, "Go"));
+                    p.afegirCalle(new Calle("Go", 999999999, "Go", "NoComprable"));
                     
-                    p.afegirCalle(new Calle("València", 30, "Marrón"));
-                    p.afegirCalle(new Calle("Murcia", 40, "Marrón"));
-                    p.afegirCalle(new Calle("Navas de Tolosa", 50, "Marrón"));
+                    p.afegirCalle(new Calle("València", 30, "Marrón", "Banca"));
+                    p.afegirCalle(new Calle("Murcia", 40, "Marrón", "Banca"));
+                    p.afegirCalle(new Calle("Navas de Tolosa", 50, "Marrón", "Banca"));
                     
-                    p.afegirCalle(new Calle("Cole", 999999999, "Cole"));
+                    p.afegirCalle(new Calle("Cole", 999999999, "Cole", "NoComprable"));
                     
-                    p.afegirCalle(new Calle("Agricultura", 70, "Rojo"));
-                    p.afegirCalle(new Calle("Espronceda", 80, "Rojo"));
-                    p.afegirCalle(new Calle("Fluvià", 90, "Rojo"));
+                    p.afegirCalle(new Calle("Agricultura", 70, "Rojo", "Banca"));
+                    p.afegirCalle(new Calle("Espronceda", 80, "Rojo", "Banca"));
+                    p.afegirCalle(new Calle("Fluvià", 90, "Rojo", "Banca"));
                     
-                    p.afegirCalle(new Calle("Parquing", 999999999, "Parquing"));
+                    p.afegirCalle(new Calle("Parquing", 999999999, "Parquing", "NoComprable"));
                     
-                    p.afegirCalle(new Calle("Tánger", 120, "Amarillo"));
-                    p.afegirCalle(new Calle("Martí i Pujol", 130, "Amarillo"));
-                    p.afegirCalle(new Calle("Nelson Mandela", 140, "Amarillo"));
+                    p.afegirCalle(new Calle("Tánger", 120, "Amarillo", "Banca"));
+                    p.afegirCalle(new Calle("Martí i Pujol", 130, "Amarillo", "Banca"));
+                    p.afegirCalle(new Calle("Nelson Mandela", 140, "Amarillo", "Banca"));
                     
-                     p.afegirCalle(new Calle("Vaya al Cole", 999999999, "VayaCole"));
+                    p.afegirCalle(new Calle("Vaya al Cole", 999999999, "VayaCole", "NoComprable"));
                     
-                    p.afegirCalle(new Calle("Presi Companys", 160, "Verde"));
-                    p.afegirCalle(new Calle("2 de Mayo", 170, "Verde"));
-                    p.afegirCalle(new Calle("Independència", 140, "Verde"));
+                    p.afegirCalle(new Calle("Presi Companys", 160, "Verde", "Banca"));
+                    p.afegirCalle(new Calle("2 de Mayo", 170, "Verde", "Banca"));
+                    p.afegirCalle(new Calle("Independència", 140, "Verde", "Banca"));
                     
                     
                     p.listaJugadores.get(0).setMiTurno(true);
@@ -119,23 +119,25 @@ public class Main extends HttpServlet {
                 case "tirar":
                     System.out.println("tirar llamada");
                     
-//                    p = (Partida) request.getAttribute("p");
                     
                     p.tirar();
                     
                     int valorDados = p.getValor();
                     
+                    /*  Cuando tiras los dados, el bucle busca el jugador con el turno y mueve su posición.
+                        Cuando tira, se le asigna el boolean HasTirado a true para evitar múltiples tiradas por turno
+                    */
                     for(int i=0; i < size; i++){
                         if(p.listaJugadores.get(i).isMiTurno() && !p.getJugador(i).isHasTirado()){
-                            if(p.getJugador(i).getPosicion() + valorDados >= 16){
+                            if(p.getJugador(i).getPosicion() + valorDados >= 16){ //S1 se le acaba el tablero, da la vuelta
                                 p.getJugador(i).setPosicion((p.getJugador(i).getPosicion() + valorDados) - 16);
+                            }else{
+                                p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
                             }
-                            p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
                             p.getJugador(i).setHasTirado(true);
                         }
                     }
                     
-//                    p.getJugador(0).setPosicion(p.getJugador(0).getPosicion() + 1);
                     
                     request.setAttribute("p", p);
                     sessio.setAttribute("p", p);
@@ -144,10 +146,12 @@ public class Main extends HttpServlet {
                     break;
                     
                 case "finalizarTurno":
-                    int flag = 0;
+                    int flag = 0; //Flag para romper el bucle cuando efectuamos el cambio de turno
+                    
+                    /*For que busca el jugador con el turno y le asigna el turno al siguiente en la lista*/
                     for(int i=0; i < size; i++){
+                        
                         if(p.listaJugadores.get(i).isMiTurno() && flag == 0){
-                            System.out.println(p.listaJugadores.get(i).getNombre() +" "+p.listaJugadores.get(i).isMiTurno());
                             if(i == (size-1) ){
                                 p.getJugador(0).setMiTurno(true);
                             }else{
@@ -156,7 +160,6 @@ public class Main extends HttpServlet {
                             p.getJugador(i).setMiTurno(false);
                             p.getJugador(i).setHasTirado(false);
                             flag = 1;
-                            System.out.println(p.listaJugadores.get(i).getNombre() +" "+p.listaJugadores.get(i).isMiTurno());
                         }
                     }
                     request.setAttribute("p", p);
