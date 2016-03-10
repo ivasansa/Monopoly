@@ -12,14 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>${ p.getJugador(0).posicion }</h1>
-        <h1>${ p.getJugador(1).posicion }</h1>
+        <h1>${ p.getJugador(0).dinero }</h1>
+        <h1>${ p.getJugador(1).dinero }</h1>
        
         
         <form action="Main" method="GET">
         <input type="submit" value="tirar" name="check"/>
     </form>
-    
+    <form action="Main" method="GET">
+        <input type="submit" value="comprar" name="check"/>
+    </form>
     <form action="Main" method="GET">
         <input type="submit" value="finalizarTurno" name="check"/>
     </form>

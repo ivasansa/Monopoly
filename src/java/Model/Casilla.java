@@ -34,6 +34,10 @@ public class Casilla {
     public String getPropietario() {
         return propietario;
     }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
+    }
     
     
 }

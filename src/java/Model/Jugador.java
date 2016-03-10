@@ -58,7 +58,15 @@ public class Jugador implements Serializable {
     public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-
+    
+    public void sumarDinero(int dinero) {
+        this.dinero += dinero;
+    }
+    
+    public void restarDinero(int dinero) {
+        this.dinero -= dinero;
+    }
+    
     public int getDinero() {
         return dinero;
     }

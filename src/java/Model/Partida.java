@@ -62,6 +62,23 @@ public class Partida implements Serializable {
         this.listaCalles = listaCalles;
     }
     
+    public boolean jugadorEnCasillaComprada(Jugador j){
+        if(this.listaCalles.get(j.posicion).propietario != "NoComprable" && this.listaCalles.get(j.posicion).propietario != "Banca"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean jugadorEnCasillaComprable(Jugador j){
+        if(this.listaCalles.get(j.posicion).propietario == "Banca"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
     
     
 }
