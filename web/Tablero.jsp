@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <title>JSP Page</title>
         <style>
             h4 {
@@ -121,9 +122,19 @@
                   
                   <td colspan="3" rowspan="3">
                       <div id="centre">
-                          <h5>${ p.getJugador(0).nombre }: ${ p.getJugador(0).dinero }€</h5>
+                          <h5>
+                          <c:if test="${ p.getJugador(0).miTurno }">
+                              <i class="fa fa-hourglass-o"></i>
+                        </c:if>
+                          ${ p.getJugador(0).nombre }: ${ p.getJugador(0).dinero }€</h5>
                           <h5>${p.getJugador(0).mensaje}</h5>
-                          <h5>${ p.getJugador(1).nombre }: ${ p.getJugador(1).dinero }€</h5>
+                          
+                          
+                           <h5>
+                          <c:if test="${ p.getJugador(1).miTurno }">
+                              <i class="fa fa-hourglass-o"></i>
+                        </c:if>
+                          ${ p.getJugador(1).nombre }: ${ p.getJugador(1).dinero }€</h5>
                           <h5>${p.getJugador(1).mensaje}</h5>
                         <form action="Main" method="GET">
                             <input type="submit" value="tirar" name="check"/>
