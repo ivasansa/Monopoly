@@ -111,19 +111,31 @@ public class Main extends HttpServlet {
 
                     int valorDados = p.getValor();
 
-                    /*  Cuando tiras los dados, el bucle busca el jugador con el turno y mueve su posición.
+                    /*  Cuando tiras los dados, el bucle busca al jugador con el turno y mueve su posición.
                      Cuando tira, se le asigna el boolean HasTirado a true para evitar múltiples tiradas por turno
                      */
+                    String n = "";
                     for (int i = 0; i < size; i++) {
+                        //Tiramos si es nuestro turno y no has tirado antes
                         if (p.listaJugadores.get(i).isMiTurno() && !p.getJugador(i).isHasTirado()) {
                             if (p.getJugador(i).getPosicion() + valorDados >= 16) { //Si se le acaba el tablero, da la vuelta
                                 p.getJugador(i).setPosicion((p.getJugador(i).getPosicion() + valorDados) - 16);
-                            } else {
+                            }
+                            //Si caemos en la càrcel, nos manda a ella (duh)
+                            //y nos quitan la fianza
+                            else if (p.getJugador(i).getPosicion() + valorDados == 12){
+                                p.getJugador(i).setPosicion(4);
+                                p.getJugador(i).restarDinero(500);
+                                n = " y " + p.getJugador(i).getNombre() + " ha pagado 500" + "€ por salir de la cárcel ";
+                            }
+                            else {
                                 p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
                             }
                             p.getJugador(i).setHasTirado(true);
+                            
+                            
+                            
                             //Mirar si ha caido en una casilla comprada
-
                             String m = "";
                             if (p.jugadorEnCasillaComprada(p.getJugador(i))) {
                                 for (int j = 0; j < size; j++) {
@@ -136,7 +148,7 @@ public class Main extends HttpServlet {
                                     }
                                 }
                             }
-                            p.getJugador(i).setMensaje(" ha sacado " + valorDados + m);
+                            p.getJugador(i).setMensaje(" ha sacado " + valorDados + m + n);
                         }
                     }
                     
