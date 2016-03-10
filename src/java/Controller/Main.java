@@ -90,7 +90,7 @@ public class Main extends HttpServlet {
 
                     p.afegirCalle(new Calle("Presi Companys", 160, "Verde", "Banca"));
                     p.afegirCalle(new Calle("2 de Mayo", 170, "Verde", "Banca"));
-                    p.afegirCalle(new Calle("Independència", 140, "Verde", "Banca"));
+                    p.afegirCalle(new Calle("Independència", 200, "rgba(0, 88, 255, 0.3)", "Banca"));
 
                     p.listaJugadores.get(0).setMiTurno(true);
 
@@ -122,21 +122,24 @@ public class Main extends HttpServlet {
                                 p.getJugador(i).setPosicion(p.getJugador(i).getPosicion() + valorDados);
                             }
                             p.getJugador(i).setHasTirado(true);
-                            //Mirar si ha caido en una cassila comprada
+                            //Mirar si ha caido en una casilla comprada
 
+                            String m = "";
                             if (p.jugadorEnCasillaComprada(p.getJugador(i))) {
-
                                 for (int j = 0; j < size; j++) {
                                     //Mira que jugador tiene comprado i hace la transferencia de dinero (1/6 del valor de la casilla)
                                     if (p.listaCalles.get(p.getJugador(i).getPosicion()).getPropietario().equals(p.listaJugadores.get(j).getNombre())) {
                                         p.listaJugadores.get(j).sumarDinero((p.listaCalles.get(p.getJugador(i).getPosicion()).getValor()) / 6);
                                         p.listaJugadores.get(i).restarDinero((p.listaCalles.get(p.getJugador(i).getPosicion()).getValor()) / 6);
+                                        int dineroPagado = (p.listaCalles.get(p.getJugador(i).getPosicion()).getValor()) / 6;
+                                        m = " y " + p.getJugador(i).getNombre() + " ha pagado " + dineroPagado + "€ a " + p.getJugador(j).getNombre();
                                     }
                                 }
                             }
+                            p.getJugador(i).setMensaje(" ha sacado " + valorDados + m);
                         }
                     }
-
+                    
                     request.setAttribute("p", p);
                     sessio.setAttribute("p", p);
                     rd = request.getRequestDispatcher("/Tablero.jsp");
@@ -156,6 +159,13 @@ public class Main extends HttpServlet {
                                     //Hacemos Transacción
                                     p.getJugador(i).restarDinero(p.listaCalles.get(p.getJugador(i).getPosicion()).getValor());
                                     p.listaCalles.get(p.getJugador(i).getPosicion()).setPropietario(p.getJugador(i).getNombre());
+                                    
+                                    //MENSAJE-----------------------------------------
+                                    
+                                    String calleComprada = p.listaCalles.get(p.getJugador(i).getPosicion()).getNombre();
+                                    int valorCalle = p.listaCalles.get(p.getJugador(i).getPosicion()).getValor();
+                                    p.getJugador(i).setMensaje(" ha comprado la calle " + calleComprada + " por valor de " + valorCalle + "€");
+                                    
                                 }
                             }
                         }

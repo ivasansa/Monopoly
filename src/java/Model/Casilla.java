@@ -5,13 +5,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author ivan
  */
-public class Casilla {
+public class Casilla implements Serializable {
     protected String nombre = "";
     protected String propietario = "";
     /*public static String[] mostraJugadors(){
@@ -21,6 +22,13 @@ public class Casilla {
         
         return J;
     }*/
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Casilla() {
+    }
 
     public Casilla(String nombre, String p) {
         this.nombre = nombre;

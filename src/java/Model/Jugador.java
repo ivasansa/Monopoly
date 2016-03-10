@@ -17,6 +17,15 @@ public class Jugador implements Serializable {
     int dinero = 0;
     boolean MiTurno = false;
     boolean hasTirado = false;
+    String mensaje = "";
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 
     public boolean isHasTirado() {
         return hasTirado;
