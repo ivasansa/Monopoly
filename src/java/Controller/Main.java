@@ -115,12 +115,14 @@ public class Main extends HttpServlet {
                      Cuando tira, se le asigna el boolean HasTirado a true para evitar múltiples tiradas por turno
                      */
                     String n = "";
+                    String o = "";
                     for (int i = 0; i < size; i++) {
                         //Tiramos si es nuestro turno y no has tirado antes
                         if (p.listaJugadores.get(i).isMiTurno() && !p.getJugador(i).isHasTirado()) {
                             if (p.getJugador(i).getPosicion() + valorDados >= 16) { //Si se le acaba el tablero, da la vuelta y recibe el dinero
                                 p.getJugador(i).setPosicion((p.getJugador(i).getPosicion() + valorDados) - 16);
                                 p.getJugador(i).sumarDinero(200);
+                                o = " y " + p.getJugador(i).getNombre() + " ha cobrado 200€";
                             }
                             //Si caemos en la càrcel, nos manda a ella (duh)
                             //y nos quitan la fianza
@@ -149,7 +151,7 @@ public class Main extends HttpServlet {
                                     }
                                 }
                             }
-                            p.getJugador(i).setMensaje(" ha sacado " + valorDados + m + n);
+                            p.getJugador(i).setMensaje(" ha sacado " + valorDados + m + n + o);
                         }
                     }
                     
